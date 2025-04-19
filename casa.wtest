@@ -1,0 +1,48 @@
+import casa.*
+import cosas.*
+
+describe "casa" {
+  test "compra heladera cama y plancha" {
+    casaDePepeYJulian.comprarCosa(heladera)
+    casaDePepeYJulian.comprarCosa(cama)
+    casaDePepeYJulian.comprarCosa(plancha)
+
+    assert.equals(casaDePepeYJulian.compras(), [heladera,cama,plancha])
+    assert.equals(casaDePepeYJulian.cantidadDeCosasCompradas(), 3)
+    assert.equals(casaDePepeYJulian.tieneAlgun(electrodomestico), true)
+    assert.equals(casaDePepeYJulian.tieneAlgun(mueble), true)
+    assert.equals(casaDePepeYJulian.tieneAlgun(comida), false)
+    assert.equals(casaDePepeYJulian.vieneDeComprar(electrodomestico), true)
+    assert.equals(casaDePepeYJulian.vieneDeComprar(mueble), false)
+    assert.equals(casaDePepeYJulian.esDerrochona(), true)
+    assert.equals(casaDePepeYJulian.comprados(electrodomestico), [heladera,plancha])
+    assert.equals(casaDePepeYJulian.comprados(mueble), [cama])
+    assert.equals(casaDePepeYJulian.esMalaEpoca(), false)
+
+  }
+}
+
+test "cuentaCorriente" {
+    cuentaCorriente.depositar(1000)
+    assert.equals(cuentaCorriente.saldo(), 2000)
+    cuentaCorriente.retirar(40)
+    assert.equals(cuentaCorriente.saldo(), 1960)
+    assert.throwsException( {cuentaCorriente.retirar(4000)} )
+}
+
+test "cuentaConGastos" {
+    cuentaConGastos.depositar(1000)
+    assert.equals(cuentaConGastos.saldo(), 1480)
+    cuentaConGastos.retirar(30)
+    assert.equals(cuentaConGastos.saldo(), 1450)
+    assert.throwsException( {cuentaConGastos.depositar(4000)} )
+    assert.equals(cuentaConGastos.saldo(), 1450)
+    cuentaConGastos.retirar(2000)
+    assert.equals(cuentaConGastos.saldo(), -550)
+}
+
+test "compra con cuenta de la casa" {
+    casaDePepeYJulian.comprarCosa(tiraDeAsado)
+    casaDePepeYJulian.comprarCosa(paqueteDeFideos)
+    assert.equals(casaDePepeYJulian.cuentaDePago().saldo(), 600)
+}
