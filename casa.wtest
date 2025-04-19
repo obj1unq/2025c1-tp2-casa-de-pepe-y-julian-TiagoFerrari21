@@ -45,4 +45,5 @@ test "compra con cuenta de la casa" {
     casaDePepeYJulian.comprarCosa(tiraDeAsado)
     casaDePepeYJulian.comprarCosa(paqueteDeFideos)
     assert.equals(casaDePepeYJulian.cuentaDePago().saldo(), 600)
+    assert.throwsException({casaDePepeYJulian.comprarCosa(heladera)})
 }
