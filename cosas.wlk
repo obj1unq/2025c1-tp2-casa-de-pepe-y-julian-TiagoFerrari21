@@ -68,7 +68,7 @@ object cuentaCorriente {
 
 	method verificarRetiro(dinero) {
 		if (not self.puedeRetirar(dinero)){
-			self.error("No tiene suficiente saldo en la cuenta")
+			self.error("No tiene suficiente saldo en la cuenta, anda a laburar!!!")
 		}
 	}
 
@@ -81,7 +81,7 @@ object cuentaCorriente {
 object cuentaConGastos {
 	var saldo = 500
 	const costoDeOperacion = 20
-	
+
 	method saldo() {
 		return saldo
 	}
